@@ -1,0 +1,474 @@
+/* =====================================================
+   FIELD CONFIGURATION - COMPLETE CSS REWRITE
+   Clean, optimized layout with perfect spacing
+   ===================================================== */
+
+/* Main Container */
+.field-configuration {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  container-type: inline-size;
+}
+
+/* =====================================================
+   FORM HEADER SECTION
+   ===================================================== */
+
+.field-form-header {
+  background: var(--sidebar-bg);
+  padding: 24px;
+  border-bottom: 2px solid var(--border);
+}
+
+.form-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 0.8fr;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.header-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(25, 195, 125, 0.1);
+}
+
+.header-input::placeholder {
+  color: var(--text-muted);
+}
+
+.header-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.add-field-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.add-field-btn:hover:not(:disabled) {
+  background: #1ea472;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 195, 125, 0.3);
+}
+
+.add-field-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cancel-edit-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel-edit-btn:hover {
+  background: #5a6268;
+  transform: scale(1.05);
+}
+
+/* =====================================================
+   TABLE SECTION
+   ===================================================== */
+
+.fields-table {
+  background: var(--card-bg);
+  width: 100%;
+  overflow: hidden;
+}
+
+.field-configuration .table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 0.8fr !important;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--border);
+  background: var(--sidebar-bg);
+  align-items: center;
+}
+
+.field-configuration .header-cell {
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 4px;
+}
+
+.field-configuration .header-cell:nth-child(3) {
+  text-align: left;
+  padding-left: 12px;
+}
+
+.table-body {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.field-configuration .table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 0.8fr !important;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-light);
+  transition: all 0.2s ease;
+  align-items: center;
+  min-height: 60px;
+}
+
+.field-configuration .table-row:hover {
+  background: var(--hover-bg);
+}
+
+.field-configuration .table-row.editing {
+  background: rgba(25, 195, 125, 0.05);
+  border-left: 4px solid var(--accent);
+}
+
+.field-configuration .table-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.field-configuration .table-cell:nth-child(3) {
+  justify-content: flex-start;
+  padding-left: 12px;
+}
+
+/* =====================================================
+   FIELD DISPLAY & INPUT ELEMENTS
+   ===================================================== */
+
+.field-configuration .field-display {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.field-configuration .table-cell:nth-child(3) .field-display {
+  text-align: left;
+}
+
+.field-configuration .field-display:hover {
+  background: var(--hover-bg);
+}
+
+.field-configuration .field-display:empty::before {
+  content: attr(placeholder);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.field-configuration .field-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field-configuration .field-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(25, 195, 125, 0.1);
+}
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+.field-configuration .action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.field-configuration .edit-btn,
+.field-configuration .delete-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.field-configuration .edit-btn:hover {
+  background: rgba(25, 195, 125, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.field-configuration .delete-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.field-configuration .edit-btn img,
+.field-configuration .delete-btn img {
+  transition: transform 0.2s ease;
+}
+
+.field-configuration .edit-btn:hover img,
+.field-configuration .delete-btn:hover img {
+  transform: scale(1.1);
+}
+
+/* =====================================================
+   STATE COMPONENTS (Loading, Error, Empty)
+   ===================================================== */
+
+.loading-state,
+.error-state,
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  min-height: 200px;
+}
+
+.loading-message {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-message::before {
+  content: "⏳";
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.error-message {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.error-message span {
+  color: #ff6b6b;
+  font-weight: 600;
+  display: block;
+  margin-top: 8px;
+}
+
+.empty-message {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.5; 
+  }
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 1200px) {
+  .field-configuration {
+    margin: 0 16px;
+  }
+  
+  .field-configuration .form-inputs,
+  .field-configuration .table-header,
+  .field-configuration .table-row {
+    gap: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .field-configuration .form-inputs {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .field-configuration .button-group {
+    justify-content: stretch;
+  }
+  
+  .field-configuration .add-field-btn {
+    width: 100%;
+  }
+  
+  .field-configuration .table-header {
+    display: none;
+  }
+  
+  .field-configuration .table-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .field-configuration .table-cell {
+    justify-content: flex-start;
+    padding: 4px 0;
+  }
+  
+  .field-configuration .table-cell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .field-configuration .table-cell:nth-child(1)::before { content: "Field Name"; }
+  .field-configuration .table-cell:nth-child(2)::before { content: "Field Type"; }
+  .field-configuration .table-cell:nth-child(3)::before { content: "Description"; }
+  .field-configuration .table-cell:nth-child(4)::before { content: "Actions"; }
+  
+  .field-configuration .action-buttons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .field-configuration .field-form-header {
+    padding: 16px;
+  }
+  
+  .field-configuration .form-inputs,
+  .field-configuration .table-header,
+  .field-configuration .table-row {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .field-configuration .edit-btn,
+  .field-configuration .delete-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .field-configuration .edit-btn img,
+  .field-configuration .delete-btn img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* =====================================================
+   ACCESSIBILITY & FOCUS STATES
+   ===================================================== */
+
+.field-configuration *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.edit-btn:focus-visible,
+.delete-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,35 +1,92 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import React, { useState } from 'react';
+
+import Sidebar from './components/Sidebar/Sidebar';
+import BatchForm from './components/BatchForm/BatchForm';
+import ConfigurationPage from './components/ConfigurationPage/ConfigurationPage';
+import BatchResults from './components/BatchResults/BatchResults';
+import './App.css';
+
+export default function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarRefreshTrigger, setSidebarRefreshTrigger] = useState(0);
+  const [currentView, setCurrentView] = useState('home'); // 'home', 'configuration', or 'batchResults'
+  const [selectedBatch, setSelectedBatch] = useState(null);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const refreshSidebar = () => {
+    setSidebarRefreshTrigger(prev => prev + 1);
+  };
+
+  const navigateToConfiguration = () => {
+    setCurrentView('configuration');
+  };
+
+  const navigateToHome = () => {
+    setCurrentView('home');
+    setSelectedBatch(null);
+  };
+
+  const navigateToBatchResults = (batch) => {
+    setSelectedBatch(batch);
+    setCurrentView('batchResults');
+  };
+
+  const handleBatchReprocessed = (newBatchId, newBatchName) => {
+    // Refresh the sidebar to show the new batch
+    refreshSidebar();
+    
+    // Navigate to the new batch results
+    setSelectedBatch({
+      batch_id: newBatchId,
+      batch_name: newBatchName
+    });
+    // Keep the current view as 'batchResults' to stay on the batch results page
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app-root">
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onClose={toggleSidebar} 
+        refreshTrigger={sidebarRefreshTrigger}
+        onNavigateToConfiguration={navigateToConfiguration}
+        onNavigateToBatchResults={navigateToBatchResults}
+        currentView={currentView}
+      />
+      <main className={`main-content${sidebarOpen ? ' sidebar-open' : ''}`}>
+        {currentView === 'home' && (
+          <div className="content-wrapper">
+            <header className="main-header">
+              <h1>Ready to unlock insights from your data?</h1>
+              <p>Upload your source and target files to find matches and connections</p>
+            </header>
+            
+            <section className="form-section">
+              <BatchForm 
+                onBatchProcessed={refreshSidebar} 
+                onNavigateToBatchResults={navigateToBatchResults}
+              />
+            </section>
+          </div>
+        )}
+        
+        {currentView === 'configuration' && (
+          <ConfigurationPage onBack={navigateToHome} />
+        )}
 
-export default App
+        {currentView === 'batchResults' && selectedBatch && (
+          <BatchResults 
+            batchId={selectedBatch.batch_id}
+            batchName={selectedBatch.batch_name}
+            onNavigateBack={navigateToHome}
+            onBatchReprocessed={handleBatchReprocessed}
+          />
+        )}
+      </main>
+    </div>
+  );
+}
